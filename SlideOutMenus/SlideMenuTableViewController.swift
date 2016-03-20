@@ -10,7 +10,7 @@ import UIKit
 
 class SlideMenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
 
-    let menuItems = ["One", "Two", "Three"]
+    let menuItems = ["Home", "Settings", "Help"]
     var tabViewController: UITabBarController!
     @IBOutlet weak var tableView: UITableView!
     
