@@ -10,17 +10,22 @@ import UIKit
 
 class SlideMenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate {
 
-    let menuItems = ["Home", "Settings", "Help"]
-    var tabViewController: UITabBarController!
+    private let menuItems = ["Home", "Settings", "Help"]
+    private var tabViewController: UITabBarController!
     @IBOutlet weak var tableView: UITableView!
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         tabViewController = parentViewController!.childViewControllers[1] as! UITabBarController
         let firstIndexPath = NSIndexPath(forRow: 0, inSection: 0)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.selectRowAtIndexPath(firstIndexPath, animated: true, scrollPosition: .Top)
+        if tableView.indexPathForSelectedRow == nil {
+            tableView.selectRowAtIndexPath(firstIndexPath, animated: true, scrollPosition: .Top)
+        }
+    }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func viewDidLoad() {
@@ -70,6 +75,7 @@ class SlideMenuTableViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tabViewController.selectedIndex = indexPath.row
+        parentViewController?.navigationItem.title = menuItems[indexPath.row]
     }
 
 
