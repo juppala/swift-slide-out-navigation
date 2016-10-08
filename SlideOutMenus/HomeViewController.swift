@@ -77,7 +77,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func handlePanGesture(recognizer: UIPanGestureRecognizer) {
         let hasDraggedRight = (recognizer.velocityInView(view).x > 0)
-        print(recognizer.velocityInView(view).x)
         switch(recognizer.state) {
         case .Began:
             break
